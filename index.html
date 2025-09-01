@@ -10,7 +10,6 @@
   <meta property="og:type" content="website" />
   <meta name="theme-color" content="#1a73e8" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="preload" href="assets/hero-shape.svg" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -291,9 +290,8 @@
     </div>
     <div class="container">
       <div class="footer-bottom">
-        <p data-en="&copy; <span id='year'></span> Nodepoint. All rights reserved." 
-           data-bn="&copy; <span id='year-bn'></span> নোডপয়েন্ট। সর্বস্বত্ব সংরক্ষিত।">
-          &copy; <span id="year"></span> Nodepoint. All rights reserved.
+        <p class="copyright-text" data-en="&copy; {year} Nodepoint. All rights reserved." data-bn="&copy; {year} নোডপয়েন্ট। সর্বস্বত্ব সংরক্ষিত।">
+          &copy; <span id="year"></span> <span class="copyright-en">Nodepoint. All rights reserved.</span><span class="copyright-bn" style="display:none;">নোডপয়েন্ট। সর্বস্বত্ব সংরক্ষিত।</span>
         </p>
       </div>
     </div>

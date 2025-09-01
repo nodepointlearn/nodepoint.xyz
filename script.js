@@ -57,6 +57,24 @@ function setLanguage(lang) {
           el.placeholder = text;
         } else if (el.tagName === 'IMG') {
           el.alt = text;
+        } else if (el.classList.contains('copyright-text')) {
+          // Handle copyright text
+          const year = new Date().getFullYear();
+          const yearText = text.replace('{year}', year);
+          const yearSpan = el.querySelector('#year');
+          if (yearSpan) yearSpan.textContent = year;
+          
+          // Update language-specific text
+          const enText = el.querySelector('.copyright-en');
+          const bnText = el.querySelector('.copyright-bn');
+          
+          if (lang === 'en') {
+            if (enText) enText.style.display = 'inline';
+            if (bnText) bnText.style.display = 'none';
+          } else {
+            if (enText) enText.style.display = 'none';
+            if (bnText) bnText.style.display = 'inline';
+          }
         } else {
           el.textContent = text;
         }
@@ -74,6 +92,33 @@ function initLanguage() {
   setLanguage(savedLang || browserLang);
 }
 
+// Update copyright year
+function updateCopyrightYear() {
+  const year = new Date().getFullYear();
+  
+  // Update English year
+  const yearEn = document.getElementById('year');
+  if (yearEn) yearEn.textContent = year;
+  
+  // Update Bengali year
+  const yearBn = document.getElementById('year-bn');
+  if (yearBn) yearBn.textContent = year;
+  
+  // Update copyright text with current year
+  const copyrightEn = document.querySelector('.copyright-en');
+  const copyrightBn = document.querySelector('.copyright-bn');
+  
+  if (copyrightEn) {
+    const enText = copyrightEn.getAttribute('data-en') || '';
+    copyrightEn.setAttribute('data-en', enText.replace('{year}', year));
+  }
+  
+  if (copyrightBn) {
+    const bnText = copyrightBn.getAttribute('data-bn') || '';
+    copyrightBn.setAttribute('data-bn', bnText.replace('{year}', year));
+  }
+}
+
 // Initialize the application
 function initApp() {
   // DOM Elements
@@ -85,6 +130,9 @@ function initApp() {
   
   // Initialize language
   initLanguage();
+  
+  // Update copyright year
+  updateCopyrightYear();
   
   // Mobile menu toggle
   if (navToggle && navMenu) {
